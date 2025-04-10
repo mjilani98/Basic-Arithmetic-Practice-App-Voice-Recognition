@@ -1,19 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/Backgroundstyle"
     tools:context=".MainActivity">
 
+
+    <!--Num 1-->
     <TextView
+        android:id="@+id/Num1"
+        style="@style/TextViewStyle"
+        android:layout_marginLeft="110dp"
+        />
+
+    <!--Operator-->
+    <TextView
+        android:id="@+id/Operator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="85dp"
+        android:layout_toEndOf="@id/Num1"
+        android:layout_marginLeft="20dp"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:hint="/"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Num2-->
+    <TextView
+        android:id="@+id/Num2"
+        style="@style/TextViewStyle"
+        android:layout_toEndOf="@id/Operator"
+        android:layout_marginLeft="20dp"
+        />
+
+
+
+
+    <!--Submit Button-->
+
+    <Button
+        android:id="@+id/SubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Num2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Answer"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/IndianRed"
+        android:onClick="answer"
+        />
+
+    <!--Score text view -->
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SubmitButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        />
+
+    <!--Next buttom-->
+
+    <Button
+        android:id="@+id/NextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/result"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Next"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/IndianRed"
+        android:onClick="next"
+        />
+
+
+
+</RelativeLayout>
