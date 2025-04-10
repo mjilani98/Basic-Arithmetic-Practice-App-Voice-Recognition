@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     //code used for speech recognition activity
     private final int ACTIVITY_TALK = 1;
 
-    private int number1;           //number one in the question
-    private int number2;           //number two in the question
-    private int answer;            //correct answer to the question
+    private double number1;           //number one in the question
+    private double number2;           //number two in the question
+    private double answer;            //correct answer to the question
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,15 +90,19 @@ public class MainActivity extends AppCompatActivity {
 
         //display number 1
         TextView num1View = findViewById(R.id.Num1);
-        num1View.setText(number1+"");
+        num1View.setText((int)number1+"");
 
         //display number 2
         TextView num2View = findViewById(R.id.Num2);
-        num2View.setText(number2+"");
+        num2View.setText((int)number2+"");
 
         //display operator
         TextView operator = findViewById(R.id.Operator);
         operator.setText(generator.getOperator());
+
+        //reset the result view
+        TextView result = findViewById(R.id.result);
+        result.setText("");
     }
 
     //event handler of the next button
@@ -155,13 +159,40 @@ public class MainActivity extends AppCompatActivity {
     {
         //text view for output
         TextView resultTextView = findViewById(R.id.result);
-        resultTextView.setBackgroundColor(Color.parseColor("#009900"));
 
-        //if list of recognized words contains correct the answer, say correct
-        if (words.contains(answer+""))
-            resultTextView.setText("Correct");
+
+        if(generator.getOperatorNumber() != 4) // if the operation is not division , the answer is integer
+        {
+            //if list of recognized words contains correct the answer, say correct
+            if (words.contains((int)answer+""))
+            {
+                resultTextView.setTextColor(Color.parseColor("#00FF00")); //setting the text color to green
+                resultTextView.setText("Correct");
+                System.out.println("the answer : "+generator.getCorrectAnswer());
+            }
             //otherwise say incorrect
-        else
-            resultTextView.setText("Incorrect");
+            else
+            {
+                resultTextView.setTextColor(Color.parseColor("#FF0000")); //setting the text color to red
+                resultTextView.setText("Incorrect");
+                System.out.println("the answer : "+generator.getCorrectAnswer());
+            }
+        }
+        else //else the answer is double
+        {
+            //if list of recognized words contains correct the answer, say correct
+            if (words.contains(answer+""))
+            {
+                resultTextView.setTextColor(Color.parseColor("#00FF00")); //setting the text color to green
+                resultTextView.setText("Correct");
+            }
+            //otherwise say incorrect
+            else
+            {
+                resultTextView.setTextColor(Color.parseColor("#FF0000")); //setting the text color to red
+                resultTextView.setText("Incorrect");
+            }
+        }
+
     }
 }

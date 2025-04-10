@@ -4,124 +4,87 @@ import java.util.Random;
 
 public class Generator {
 
-    //number 1 will be randomly generated
-    private int num1;
-    //number 2 will be randomly generated
-    private int num2;
-    //The correct answer based on the type of operation
-    private int correctAnswer;
-    //The number that will be inputted from the user
-    private int answerInput;
-    //The type of operation, randomly will be generated
+    // Number 1 and number 2 will be randomly generated as doubles
+    private double num1;
+    private double num2;
+    // The correct answer based on the type of operation
+    private double correctAnswer;
+    // The type of operation, randomly generated
     private int operator;
-    //The total number of questions been answered
-    private int totalQuestions  = 0;
-    //The total number of the right answers
-    private int totalCorrectAnswers = 0 ;
 
-
-    //create a Random class object
+    // Create a Random class object
     private Random random = new Random();
 
     public void generate()
     {
-        //the operator will range between 1 and 4 , both inclusive
-        operator = random.nextInt(4) +1 ;
+        // The operator will range between 1 and 4, both inclusive
+        operator = random.nextInt(4) + 1;
 
-        if(operator == 1)
-        {
-            num1 =  random.nextInt(99)+1;
-            num2 =  random.nextInt(99)+1;
-        }
-        else if(operator == 2)
-        {
-            num1 = random.nextInt(99)+1;
-            num2 = random.nextInt(99)+1;
-        }
-        else if(operator == 3)
-        {
-            num1 = random.nextInt(99)+1;
-            num2 = random.nextInt(99)+1;
-        }
-        else if(operator == 3)
-        {
-            num1 = random.nextInt(99)+1;
-            num2 = random.nextInt(99)+1;
-        }
+        // Generate num1 and num2 as doubles, between 1 and 100
+        num1 = random.nextInt(100) + 1;  // Generates a number between 1 and 100
+        num2 = random.nextInt(100) + 1;  // Generates a number between 1 and 100
 
+        // Ensure num2 is not 0 for division
+        if (operator == 4 && num2 == 0)
+        {
+            num2 = 1; // Prevent division by zero
+        }
     }
 
-    public int getCorrectAnswer()
+    // Method returns the correct answer
+    public double getCorrectAnswer()
     {
-        //if Addition
-        if(operator == 1 )
-            correctAnswer = num1 + num2;
-        //if Subtraction
-        if(operator == 2)
-            correctAnswer = num1 - num2;
-        if(operator == 3 )
-            correctAnswer = num1 * num2;
-        if(operator == 4 )
-            correctAnswer = num1 / num2;
+        // Calculate the correct answer based on the operator
+        switch (operator) {
+            case 1:  // Addition
+                correctAnswer = num1 + num2;
+                break;
+            case 2:  // Subtraction
+                correctAnswer = num1 - num2;
+                break;
+            case 3:  // Multiplication
+                correctAnswer = num1 * num2;
+                break;
+            case 4:  // Division
+                correctAnswer = num1 / num2;
+                break;
+            default:
+                correctAnswer = 0;
+                break;
+        }
 
-        return correctAnswer;
+        // Round the result to 1 decimal place
+        return Math.round(correctAnswer * 10.0) / 10.0;
     }
 
-
-
-    //get number 1
-    public int getNum1()
-    {
+    // Get number 1
+    public double getNum1() {
         return num1;
     }
 
-    //get number 2
-    public int getNum2()
-    {
+    // Get number 2
+    public double getNum2() {
         return num2;
     }
 
-    //get the correct answer
-
-
-    //get total questions
-    public int getTotalQuestions()
-    {
-        return totalQuestions;
+    // Get operator symbol as a string
+    public String getOperator() {
+        switch (operator) {
+            case 1:
+                return "+";
+            case 2:
+                return "-";
+            case 3:
+                return "*";
+            case 4:
+                return "/";
+            default:
+                return "";
+        }
     }
 
-    //get the total of correct answers
-    public int getTotalCorrectAnswers()
+    public int getOperatorNumber()
     {
-        return totalCorrectAnswers;
+        return operator;
     }
-
-    public void incrementCorrectAnswers()
-    {
-        totalCorrectAnswers +=1;
-    }
-
-    public void incrementTotalQuestions()
-    {
-        totalQuestions += 1;
-    }
-
-    public String getOperator()
-    {
-        //if Addition
-        if(operator == 1 )
-            return "+";
-        //if Subtraction
-        if(operator == 2)
-            return "-";
-        if(operator == 3 )
-            return "*";
-        if(operator == 4 )
-            return "/";
-
-        return "";
-    }
-
-
-
 }
