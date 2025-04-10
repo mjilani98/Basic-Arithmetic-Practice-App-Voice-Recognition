@@ -1,4 +1,4 @@
-package com.example.kidsmathpracticeapp;
+package com.example.hw5q2;
 
 import java.util.Random;
 
@@ -30,13 +30,13 @@ public class Generator {
 
         if(operator == 1)
         {
-            num1 = random.nextInt(999)+1;
-            num2 = random.nextInt(999)+1;
+            num1 =  random.nextInt(99)+1;
+            num2 =  random.nextInt(99)+1;
         }
         else if(operator == 2)
         {
-            num1 = random.nextInt(999)+1;
-            num2 = random.nextInt(999)+1;
+            num1 = random.nextInt(99)+1;
+            num2 = random.nextInt(99)+1;
         }
         else if(operator == 3)
         {
@@ -45,7 +45,7 @@ public class Generator {
         }
         else if(operator == 3)
         {
-            num1 = random.nextInt(999)+1;
+            num1 = random.nextInt(99)+1;
             num2 = random.nextInt(99)+1;
         }
 
@@ -106,9 +106,20 @@ public class Generator {
         totalQuestions += 1;
     }
 
-    public int getOperator()
+    public String getOperator()
     {
-        return operator;
+        //if Addition
+        if(operator == 1 )
+            return "+";
+        //if Subtraction
+        if(operator == 2)
+            return "-";
+        if(operator == 3 )
+            return "*";
+        if(operator == 4 )
+            return "/";
+
+        return "";
     }
 
 
